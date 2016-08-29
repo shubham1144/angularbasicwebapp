@@ -20,14 +20,17 @@
   $scope.rows = [{
     col1Value : 'R1C1',
     col2Value : 'R1C2',
+    col3Value : 'R1C3',
     hidden : 'HiddenValue1'
   },{
     col1Value : 'R2C1',
     col2Value : 'R2C2',
+    col3Value : 'R2C3',
     hidden : 'HiddenValue2'
   },{
     col1Value : 'R3C1',
     col2Value : 'R3C2',
+    col3Value : 'R3C3',
     hidden : 'HiddenValue3'
   }];
 
@@ -51,14 +54,14 @@
           {{row.col2Value}}
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-          DATETIMEPICKERTOBEADDED
+          {{row.col3Value}}
         </div>
 			</div>
 		</div>
 	
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
     
       <!-- Modal content-->
       <div class="modal-content">
@@ -72,7 +75,9 @@
                 <tr>
                   <th>Column1</th>
                   <th>Column2</th>
+                  <th>Column3</th>
                   <th>Hidden Value</th>
+                  <th>Date Time Picker</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,7 +89,13 @@
                   {{rows[currentRowIndex].col2Value}}
                   </td> 
                   <td>
+                  {{rows[currentRowIndex].col3Value}}
+                  </td> 
+                  <td>
                   {{rows[currentRowIndex].hidden}}
+                  </td>
+                  <td>
+                    <input class="form-control ng-pristine ng-valid ng-touched" type="datetime-local" name="time" ng-model="row.time">
                   </td>
                 </tr>
               <tbody>
