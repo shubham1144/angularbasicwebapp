@@ -17,10 +17,23 @@
 	var mainApp = angular.module("mainApp", []);
 
 	mainApp.controller('modalController', function($scope) {
-	$scope.rows = ['row1', 'row2', 'row3'];
+  $scope.rows = [{
+    col1Value : 'R1C1',
+    col2Value : 'R1C2',
+    hidden : 'HiddenValue1'
+  },{
+    col1Value : 'R2C1',
+    col2Value : 'R2C2',
+    hidden : 'HiddenValue2'
+  },{
+    col1Value : 'R3C1',
+    col2Value : 'R3C2',
+    hidden : 'HiddenValue3'
+  }];
 
 	$scope.setCurrentRow = function(index){
 		$scope.currentRowIndex = index;
+    //console.log('Hidden value of row selected is : ' + $scope.rows[index].hidden);
 	};
 
 	});
@@ -29,12 +42,17 @@
 <body>
 	<div ng-app="mainApp" ng-controller="modalController">
 		<div class="container-fluid">
-			<div class="row" ng-repeat="row in rows">
-			
-			<!-- 3 columns inside each row ROW {{$index+1}}-->
-			   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" ng-repeat="col in rows" ng-click="setCurrentRow($parent.$index+1);" data-toggle="modal" data-target="#myModal">
-			   	COLUMN {{$index+1}}
-			   </div>
+			<div class="row" ng-repeat="row in rows" ng-click="setCurrentRow($index);" data-toggle="modal" data-target="#myModal">			
+			<!-- 3 columns inside each row-->
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          {{row.col1Value}}
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          {{row.col2Value}}
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          DATETIMEPICKERTOBEADDED
+        </div>
 			</div>
 		</div>
 	
@@ -49,7 +67,28 @@
           <h4 class="modal-title">Welcome</h4>
         </div>
         <div class="modal-body">
-          <p>You clicked on row : {{currentRowIndex}}</p>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Column1</th>
+                  <th>Column2</th>
+                  <th>Hidden Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                  {{rows[currentRowIndex].col1Value}}
+                  </td>
+                  <td>
+                  {{rows[currentRowIndex].col2Value}}
+                  </td> 
+                  <td>
+                  {{rows[currentRowIndex].hidden}}
+                  </td>
+                </tr>
+              <tbody>
+            </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary">Save</button>
